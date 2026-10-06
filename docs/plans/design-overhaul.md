@@ -11,6 +11,9 @@
 
 ## Decision log
 
+- Keep a compact, tracked `benchmarks/results.json` summary for the marketing proof strip. The benchmark runner can regenerate full run data, while a fresh checkout still builds without committing bulky per-repository reports.
+- Keep fake `.env` files under `scripts/fixtures/` trackable for golden scanner tests; the ignore exception is scoped to fixture paths so real environment files remain ignored.
+
 - 2026-10-06: Keep all presentation work inside `apps/web`; scanner checks, deterministic findings, scoring, and patch validation stay unchanged.
 - 2026-10-06: Use CSS variables in `globals.css` as the source of truth and expose them to Tailwind v4 with `@theme inline`.
 - 2026-10-06: Prefer inline Lucide-style SVG icons and CSS transitions over adding runtime animation/icon packages. Use IntersectionObserver for lightweight reveal motion and honor `prefers-reduced-motion`.

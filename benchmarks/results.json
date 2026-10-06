@@ -1,0 +1,36 @@
+{
+  "generatedAt": "2026-10-05T21:40:07.305Z",
+  "summary": {
+    "requested": 2,
+    "scanned": 2,
+    "failed": 0,
+    "criticalFindingPercent": 100,
+    "topFindings": [
+      {
+        "checkId": "QUA-003",
+        "count": 150
+      },
+      {
+        "checkId": "QUA-004",
+        "count": 26
+      },
+      {
+        "checkId": "SEC-005",
+        "count": 6
+      },
+      {
+        "checkId": "REL-003",
+        "count": 3
+      },
+      {
+        "checkId": "DATA-002",
+        "count": 2
+      }
+    ],
+    "medianScanTimeMs": 5370,
+    "patchValidationRate": 100,
+    "patchCount": 22,
+    "verifiedPatchCount": 22
+  },
+  "runs": []
+}

@@ -1,0 +1,7 @@
+{
+  "name": "leaky-secrets-fixture",
+  "private": true,
+  "dependencies": {
+    "react": "19.0.0"
+  }
+}

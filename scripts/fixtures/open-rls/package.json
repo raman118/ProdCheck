@@ -1,0 +1,7 @@
+{
+  "name": "open-rls-fixture",
+  "private": true,
+  "dependencies": {
+    "@supabase/supabase-js": "2.50.0"
+  }
+}

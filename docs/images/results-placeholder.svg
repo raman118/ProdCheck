@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="620" viewBox="0 0 1100 620" role="img" aria-labelledby="title description">
+  <title id="title">ProdCheck results page screenshot placeholder</title>
+  <desc id="description">A dark report mock showing a readiness score, category scores, a finding, and a verified fix.</desc>
+  <rect width="1100" height="620" rx="24" fill="#0b0d11"/>
+  <path d="M0 90h1100" stroke="#272e3a"/>
+  <rect x="52" y="30" width="32" height="32" rx="9" fill="#9af18b"/>
+  <text x="68" y="52" text-anchor="middle" fill="#0a150b" font-family="Arial,sans-serif" font-size="18" font-weight="700">P</text>
+  <text x="98" y="52" fill="#f5f7fa" font-family="Arial,sans-serif" font-size="20" font-weight="700">ProdCheck</text>
+  <text x="62" y="132" fill="#9af18b" font-family="Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="1">PRODUCTION READINESS REPORT</text>
+  <text x="62" y="175" fill="#f5f7fa" font-family="Arial,sans-serif" font-size="34" font-weight="700">acme/store</text>
+  <text x="62" y="202" fill="#9ba6b5" font-family="Arial,sans-serif" font-size="13">Commit a4e91c0d7a25 · Scanned just now</text>
+  <rect x="60" y="226" width="980" height="174" rx="16" fill="#11151c" stroke="#272e3a"/>
+  <circle cx="160" cy="313" r="55" fill="none" stroke="#272e3a" stroke-width="10"/>
+  <path d="M160 258a55 55 0 1 1-48 82" fill="none" stroke="#9af18b" stroke-width="10" stroke-linecap="round"/>
+  <text x="160" y="322" text-anchor="middle" fill="#f5f7fa" font-family="Arial,sans-serif" font-size="36" font-weight="700">82</text>
+  <text x="160" y="385" text-anchor="middle" fill="#9ba6b5" font-family="Arial,sans-serif" font-size="13">Good</text>
+  <g font-family="Arial,sans-serif" font-size="13" fill="#f5f7fa">
+    <text x="270" y="270">Security</text><text x="484" y="270">82</text>
+    <text x="570" y="270">Data</text><text x="785" y="270">91</text>
+    <text x="270" y="326">Reliability</text><text x="484" y="326">78</text>
+    <text x="570" y="326">Observability</text><text x="785" y="326">75</text>
+    <text x="270" y="382">Quality</text><text x="484" y="382">84</text>
+  </g>
+  <rect x="260" y="282" width="220" height="5" rx="3" fill="#9af18b"/>
+  <rect x="560" y="282" width="220" height="5" rx="3" fill="#9af18b"/>
+  <rect x="260" y="338" width="220" height="5" rx="3" fill="#9af18b"/>
+  <rect x="560" y="338" width="220" height="5" rx="3" fill="#9af18b"/>
+  <rect x="260" y="394" width="220" height="5" rx="3" fill="#9af18b"/>
+  <rect x="60" y="425" width="980" height="142" rx="14" fill="#11151c" stroke="#272e3a"/>
+  <text x="84" y="459" fill="#9af18b" font-family="Arial,sans-serif" font-size="12" font-weight="700">SEC-004 · SECURITY</text>
+  <text x="84" y="488" fill="#f5f7fa" font-family="Arial,sans-serif" font-size="18" font-weight="700">CORS accepts every origin</text>
+  <text x="84" y="514" fill="#9ba6b5" font-family="Arial,sans-serif" font-size="13">Restrict access to origins that need this API.</text>
+  <rect x="84" y="529" width="142" height="28" rx="8" fill="#11151c" stroke="#272e3a"/>
+  <text x="155" y="548" text-anchor="middle" fill="#f5f7fa" font-family="Arial,sans-serif" font-size="12">Show fix · Verified</text>
+  <text x="550" y="598" text-anchor="middle" fill="#586270" font-family="Arial,sans-serif" font-size="13">SCREENSHOT PLACEHOLDER</text>
+</svg>

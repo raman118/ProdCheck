@@ -1,0 +1,3 @@
+# One public GitHub repository URL per line. Keep benchmark targets small enough for the scan caps.
+https://github.com/vercel/nextjs-subscription-payments
+https://github.com/ixartz/Next-js-Boilerplate

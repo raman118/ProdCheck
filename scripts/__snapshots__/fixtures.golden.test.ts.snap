@@ -1,0 +1,103 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`repository golden fixtures > locks findings and score for clean-production 1`] = `
+{
+  "findings": [],
+  "score": 100,
+}
+`;
+
+exports[`repository golden fixtures > locks findings and score for leaky-secrets 1`] = `
+{
+  "findings": [
+    "SEC-002:.env.production:1:secret",
+    "SEC-002:.env.production:env-file",
+    "SEC-003:src/client.ts:3",
+    "OBS-001:error-tracking",
+    "OBS-001:structured-logging",
+    "QUA-001:no-tests",
+    "QUA-002:no-ci",
+    "QUA-004:no-lockfile",
+    "SEC-005:csp",
+    "SEC-005:frame",
+    "SEC-005:hsts",
+    "REL-004:missing-health-endpoint",
+  ],
+  "score": 41,
+}
+`;
+
+exports[`repository golden fixtures > locks findings and score for missing-auth 1`] = `
+{
+  "findings": [
+    "SEC-001:app/api/admin/users/route.ts:1",
+    "REL-001:app/api/admin/users/route.ts",
+    "OBS-001:error-tracking",
+    "OBS-001:structured-logging",
+    "QUA-001:no-tests",
+    "QUA-002:no-ci",
+    "QUA-004:no-lockfile",
+    "SEC-005:csp",
+    "SEC-005:frame",
+    "SEC-005:hsts",
+    "REL-004:missing-health-endpoint",
+  ],
+  "score": 51,
+}
+`;
+
+exports[`repository golden fixtures > locks findings and score for mixed 1`] = `
+{
+  "findings": [
+    "DATA-002:supabase/migrations/001_bad.sql:2:open_users",
+    "DATA-004:supabase/migrations/001_bad.sql:4:delete",
+    "SEC-002:.env.local:env-file",
+    "DATA-001:public.users",
+    "DATA-004:supabase/migrations/001_bad.sql:3:drop",
+    "QUA-003:lodash@4.17.20:GHSA-35jh-r3h4-6jhm",
+    "REL-001:app/api/users/route.ts",
+    "SEC-001:app/api/users/route.ts:1",
+    "SEC-006:app/api/users/route.ts:3:eval",
+    "OBS-001:error-tracking",
+    "OBS-001:structured-logging",
+    "QUA-001:no-tests",
+    "QUA-002:no-ci",
+    "QUA-004:package.json:next",
+    "QUA-004:package.json:react",
+    "REL-002:app/api/users/route.ts:2",
+    "SEC-005:csp",
+    "SEC-005:frame",
+    "SEC-005:hsts",
+    "REL-004:missing-health-endpoint",
+  ],
+  "score": 0,
+}
+`;
+
+exports[`repository golden fixtures > locks findings and score for open-rls 1`] = `
+{
+  "findings": [
+    "DATA-002:supabase/migrations/001_posts.sql:3:public_posts",
+    "OBS-001:error-tracking",
+    "OBS-001:structured-logging",
+    "QUA-001:no-tests",
+    "QUA-002:no-ci",
+    "SEC-005:csp",
+    "SEC-005:frame",
+    "SEC-005:hsts",
+    "REL-004:missing-health-endpoint",
+  ],
+  "score": 63,
+}
+`;
+
+exports[`repository golden fixtures > locks findings and score for vulnerable-nextjs-supabase 1`] = `
+{
+  "findings": [
+    "QUA-003:lodash@4.17.20:GHSA-35jh-r3h4-6jhm",
+    "DATA-003:src/posts.ts:2:posts:slug",
+    "REL-003:src/posts.ts:2",
+  ],
+  "score": 84,
+}
+`;

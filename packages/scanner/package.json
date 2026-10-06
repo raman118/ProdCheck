@@ -1,0 +1,21 @@
+{
+  "name": "@prodcheck/scanner",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "eslint src",
+    "build": "tsc -p tsconfig.build.json"
+  },
+  "dependencies": {
+    "@prodcheck/shared": "workspace:*",
+    "diff": "^9.0.0",
+    "source-map-support": "^0.5.21",
+    "ts-morph": "^28.0.0"
+  }
+}

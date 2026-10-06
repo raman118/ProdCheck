@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": { "types": ["node"], "noEmit": true },
+  "include": ["scripts/**/*.ts"],
+  "exclude": [
+    "scripts/fixtures/clean-production/**",
+    "scripts/fixtures/leaky-secrets/**",
+    "scripts/fixtures/missing-auth/**",
+    "scripts/fixtures/mixed/**",
+    "scripts/fixtures/open-rls/**",
+    "scripts/fixtures/vulnerable-nextjs-supabase/**"
+  ]
+}

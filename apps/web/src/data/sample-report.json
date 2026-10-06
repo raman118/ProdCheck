@@ -1,0 +1,417 @@
+{
+  "repo": {
+    "owner": "prodcheck-fixture",
+    "name": "mixed",
+    "commitSha": "ffffffffffffffffffffffffffffffffffffffff"
+  },
+  "scannedAt": "2026-10-06T00:00:00.000Z",
+  "stack": {
+    "node": true,
+    "frameworks": [
+      "nextjs",
+      "react"
+    ],
+    "supabase": true,
+    "packageManager": "npm",
+    "packageCount": 3,
+    "malformedPackageJson": false
+  },
+  "score": 0,
+  "scoreVersion": 1,
+  "scoreBand": "Critical",
+  "categoryBreakdown": [
+    {
+      "category": "security",
+      "score": 62,
+      "deduction": 38,
+      "cap": 40,
+      "findingCount": 6,
+      "severityCounts": {
+        "critical": 1,
+        "high": 2,
+        "medium": 3,
+        "low": 0,
+        "info": 0
+      }
+    },
+    {
+      "category": "data",
+      "score": 65,
+      "deduction": 35,
+      "cap": 35,
+      "findingCount": 4,
+      "severityCounts": {
+        "critical": 2,
+        "high": 2,
+        "medium": 0,
+        "low": 0,
+        "info": 0
+      }
+    },
+    {
+      "category": "reliability",
+      "score": 87,
+      "deduction": 13,
+      "cap": 30,
+      "findingCount": 3,
+      "severityCounts": {
+        "critical": 0,
+        "high": 1,
+        "medium": 1,
+        "low": 1,
+        "info": 0
+      }
+    },
+    {
+      "category": "observability",
+      "score": 94,
+      "deduction": 6,
+      "cap": 20,
+      "findingCount": 2,
+      "severityCounts": {
+        "critical": 0,
+        "high": 0,
+        "medium": 2,
+        "low": 0,
+        "info": 0
+      }
+    },
+    {
+      "category": "quality",
+      "score": 80,
+      "deduction": 20,
+      "cap": 20,
+      "findingCount": 5,
+      "severityCounts": {
+        "critical": 0,
+        "high": 1,
+        "medium": 4,
+        "low": 0,
+        "info": 0
+      }
+    }
+  ],
+  "findings": [
+    {
+      "id": "DATA-002:supabase/migrations/001_bad.sql:2:open_users",
+      "checkId": "DATA-002",
+      "severity": "critical",
+      "category": "data",
+      "title": "RLS policy open_users allows every row",
+      "explanation": "This policy does not tie access to the signed-in user. Restrict rows with an explicit ownership or role condition before exposing the table.",
+      "evidence": [
+        {
+          "file": "supabase/migrations/001_bad.sql",
+          "lineStart": 2,
+          "lineEnd": 2,
+          "snippet": "RLS policy open_users has a permissive or missing identity condition."
+        }
+      ],
+      "confidence": 0.9
+    },
+    {
+      "id": "DATA-004:supabase/migrations/001_bad.sql:4:delete",
+      "checkId": "DATA-004",
+      "severity": "critical",
+      "category": "data",
+      "title": "Migration deletes rows without a WHERE clause",
+      "explanation": "An unbounded delete can remove every row in production. Add an explicit predicate or move the operation into a reviewed backfill.",
+      "evidence": [
+        {
+          "file": "supabase/migrations/001_bad.sql",
+          "lineStart": 4,
+          "lineEnd": 4,
+          "snippet": "delete from public.audit_events;"
+        }
+      ],
+      "confidence": 0.88
+    },
+    {
+      "id": "SEC-002:.env.local:env-file",
+      "checkId": "SEC-002",
+      "severity": "critical",
+      "category": "security",
+      "title": "Environment file is committed",
+      "explanation": "Committed environment files can expose production credentials. Remove the file from version control and rotate any real credentials it contains.",
+      "evidence": [
+        {
+          "file": ".env.local",
+          "lineStart": 1,
+          "lineEnd": 1,
+          "snippet": "Committed environment file detected; values are hidden."
+        }
+      ],
+      "confidence": 0.96
+    },
+    {
+      "id": "DATA-001:public.users",
+      "checkId": "DATA-001",
+      "severity": "high",
+      "category": "data",
+      "title": "Supabase table public.users has RLS disabled",
+      "explanation": "Supabase tables exposed through the Data API should have row-level security enabled. Add an RLS migration and policies for intended access.",
+      "evidence": [
+        {
+          "file": "supabase/migrations/001_bad.sql",
+          "lineStart": 1,
+          "lineEnd": 1,
+          "snippet": "create table public.users (id uuid primary key, email text);"
+        }
+      ],
+      "confidence": 0.83
+    },
+    {
+      "id": "DATA-004:supabase/migrations/001_bad.sql:3:drop",
+      "checkId": "DATA-004",
+      "severity": "high",
+      "category": "data",
+      "title": "Migration drops an existing database object",
+      "explanation": "Dropping tables or columns can irreversibly remove production data. Use a staged migration and confirm backups before applying it.",
+      "evidence": [
+        {
+          "file": "supabase/migrations/001_bad.sql",
+          "lineStart": 3,
+          "lineEnd": 3,
+          "snippet": "drop table public.legacy_users;"
+        }
+      ],
+      "confidence": 0.76
+    },
+    {
+      "id": "QUA-003:lodash@4.17.20:GHSA-35jh-r3h4-6jhm",
+      "checkId": "QUA-003",
+      "severity": "high",
+      "category": "quality",
+      "title": "Vulnerable dependency lodash@4.17.20",
+      "explanation": "Lodash version 4.17.20 has a known security advisory in this offline fixture. Upgrade to 4.17.21 or later.",
+      "evidence": [
+        {
+          "file": "package-lock.json",
+          "lineStart": 1,
+          "lineEnd": 1,
+          "snippet": "OSV reported GHSA-35jh-r3h4-6jhm for lodash@4.17.20."
+        }
+      ],
+      "confidence": 0.76
+    },
+    {
+      "id": "REL-001:app/api/users/route.ts",
+      "checkId": "REL-001",
+      "severity": "high",
+      "category": "reliability",
+      "title": "Public API route has no visible rate limit",
+      "explanation": "Unauthenticated routes can be called repeatedly. Add a per-IP or per-account limit to reduce brute force and resource abuse.",
+      "evidence": [
+        {
+          "file": "app/api/users/route.ts",
+          "lineStart": 1,
+          "lineEnd": 1,
+          "snippet": "Public API route app/api/users/route.ts has no visible rate limiter."
+        }
+      ],
+      "confidence": 0.68
+    },
+    {
+      "id": "SEC-001:app/api/users/route.ts:1",
+      "checkId": "SEC-001",
+      "severity": "high",
+      "category": "security",
+      "title": "API handler has no visible auth guard",
+      "explanation": "This public handler has no recognizable authentication check. Verify the caller before returning data or changing state.",
+      "evidence": [
+        {
+          "file": "app/api/users/route.ts",
+          "lineStart": 1,
+          "lineEnd": 1,
+          "snippet": "Exported API handler at app/api/users/route.ts:1. No auth guard was found in this file."
+        }
+      ],
+      "confidence": 0.78
+    },
+    {
+      "id": "SEC-006:app/api/users/route.ts:3:eval",
+      "checkId": "SEC-006",
+      "severity": "high",
+      "category": "security",
+      "title": "Dynamic code execution with eval",
+      "explanation": "`eval` executes text as code and can turn untrusted input into an arbitrary code path. Replace it with explicit parsing or a fixed function map.",
+      "evidence": [
+        {
+          "file": "app/api/users/route.ts",
+          "lineStart": 3,
+          "lineEnd": 3,
+          "snippet": "Dynamic code execution call detected."
+        }
+      ],
+      "confidence": 0.8
+    },
+    {
+      "id": "OBS-001:error-tracking",
+      "checkId": "OBS-001",
+      "severity": "medium",
+      "category": "observability",
+      "title": "No error tracking service was detected",
+      "explanation": "Without error tracking, production exceptions can go unnoticed. Add a server-side error reporting integration or document the platform integration.",
+      "evidence": [],
+      "confidence": 0.56
+    },
+    {
+      "id": "OBS-001:structured-logging",
+      "checkId": "OBS-001",
+      "severity": "medium",
+      "category": "observability",
+      "title": "No structured logging was detected",
+      "explanation": "Structured logs make production failures easier to search and correlate. Add a logger that records event names and useful request context.",
+      "evidence": [],
+      "confidence": 0.56
+    },
+    {
+      "id": "QUA-001:no-tests",
+      "checkId": "QUA-001",
+      "severity": "medium",
+      "category": "quality",
+      "title": "No test files were detected",
+      "explanation": "Tests catch regressions before deploys. Add focused unit tests for core business rules and one integration test for a critical path.",
+      "evidence": [],
+      "confidence": 0.72
+    },
+    {
+      "id": "QUA-002:no-ci",
+      "checkId": "QUA-002",
+      "severity": "medium",
+      "category": "quality",
+      "title": "No CI configuration was detected",
+      "explanation": "Automated checks help catch broken builds and tests before they reach production. Add a CI workflow that runs typecheck, lint, tests, and build.",
+      "evidence": [],
+      "confidence": 0.76
+    },
+    {
+      "id": "QUA-004:package.json:next",
+      "checkId": "QUA-004",
+      "severity": "medium",
+      "category": "quality",
+      "title": "Dependency next is not pinned to an exact version",
+      "explanation": "The manifest uses ^15.1.0, which may resolve to different releases. Pin an exact version and update the lockfile through the package manager.",
+      "evidence": [
+        {
+          "file": "package.json",
+          "lineStart": 5,
+          "lineEnd": 5,
+          "snippet": "\"next\": \"^15.1.0\","
+        }
+      ],
+      "fix": {
+        "description": "Pin next to the version recorded in the lockfile.",
+        "patch": "Index: package.json\n===================================================================\n--- package.json\tbefore\n+++ package.json\tafter\n@@ -1,9 +1,9 @@\n {\n   \"name\": \"mixed-fixture\",\n   \"private\": true,\n   \"dependencies\": {\n-    \"next\": \"^15.1.0\",\n+    \"next\": \"15.1.4\",\n     \"react\": \"~19.0.0\",\n     \"lodash\": \"4.17.20\"\n   }\n }\n",
+        "validated": true
+      },
+      "confidence": 0.84
+    },
+    {
+      "id": "QUA-004:package.json:react",
+      "checkId": "QUA-004",
+      "severity": "medium",
+      "category": "quality",
+      "title": "Dependency react is not pinned to an exact version",
+      "explanation": "The manifest uses ~19.0.0, which may resolve to different releases. Pin an exact version and update the lockfile through the package manager.",
+      "evidence": [
+        {
+          "file": "package.json",
+          "lineStart": 6,
+          "lineEnd": 6,
+          "snippet": "\"react\": \"~19.0.0\","
+        }
+      ],
+      "fix": {
+        "description": "Pin react to the version recorded in the lockfile.",
+        "patch": "Index: package.json\n===================================================================\n--- package.json\tbefore\n+++ package.json\tafter\n@@ -2,8 +2,8 @@\n   \"name\": \"mixed-fixture\",\n   \"private\": true,\n   \"dependencies\": {\n     \"next\": \"^15.1.0\",\n-    \"react\": \"~19.0.0\",\n+    \"react\": \"19.0.0\",\n     \"lodash\": \"4.17.20\"\n   }\n }\n",
+        "validated": true
+      },
+      "confidence": 0.84
+    },
+    {
+      "id": "REL-002:app/api/users/route.ts:2",
+      "checkId": "REL-002",
+      "severity": "medium",
+      "category": "reliability",
+      "title": "Request body has no visible schema validation",
+      "explanation": "Malformed or unexpected input can reach application logic. Validate the request against a Zod, Joi, Valibot, or equivalent schema before using it.",
+      "evidence": [
+        {
+          "file": "app/api/users/route.ts",
+          "lineStart": 2,
+          "lineEnd": 2,
+          "snippet": "const body = await request.json();"
+        }
+      ],
+      "confidence": 0.72
+    },
+    {
+      "id": "SEC-005:csp",
+      "checkId": "SEC-005",
+      "severity": "medium",
+      "category": "security",
+      "title": "Missing Content-Security-Policy",
+      "explanation": "The repository configuration does not set Content-Security-Policy. Add it at the app or hosting layer to reduce browser-side attack risk.",
+      "evidence": [
+        {
+          "file": "next.config.ts",
+          "lineStart": 1,
+          "lineEnd": 1,
+          "snippet": "No Content-Security-Policy setting was found in detected configuration files."
+        }
+      ],
+      "confidence": 0.7
+    },
+    {
+      "id": "SEC-005:frame",
+      "checkId": "SEC-005",
+      "severity": "medium",
+      "category": "security",
+      "title": "Missing X-Frame-Options or CSP frame-ancestors",
+      "explanation": "The repository configuration does not set X-Frame-Options or CSP frame-ancestors. Add it at the app or hosting layer to reduce browser-side attack risk.",
+      "evidence": [
+        {
+          "file": "next.config.ts",
+          "lineStart": 1,
+          "lineEnd": 1,
+          "snippet": "No X-Frame-Options or CSP frame-ancestors setting was found in detected configuration files."
+        }
+      ],
+      "confidence": 0.7
+    },
+    {
+      "id": "SEC-005:hsts",
+      "checkId": "SEC-005",
+      "severity": "medium",
+      "category": "security",
+      "title": "Missing Strict-Transport-Security",
+      "explanation": "The repository configuration does not set Strict-Transport-Security. Add it at the app or hosting layer to reduce browser-side attack risk.",
+      "evidence": [
+        {
+          "file": "next.config.ts",
+          "lineStart": 1,
+          "lineEnd": 1,
+          "snippet": "No Strict-Transport-Security setting was found in detected configuration files."
+        }
+      ],
+      "confidence": 0.7
+    },
+    {
+      "id": "REL-004:missing-health-endpoint",
+      "checkId": "REL-004",
+      "severity": "low",
+      "category": "reliability",
+      "title": "No health endpoint was detected",
+      "explanation": "A lightweight health route gives hosting and monitoring systems a safe way to confirm the app is running.",
+      "evidence": [],
+      "fix": {
+        "description": "Add a lightweight Next.js health endpoint.",
+        "patch": "===================================================================\n--- /dev/null\n+++ app/api/health/route.ts\n@@ -0,0 +1,3 @@\n+export function GET() {\n+  return Response.json({ status: \"ok\" });\n+}\n",
+        "validated": true
+      },
+      "confidence": 0.6
+    }
+  ],
+  "osvStatus": "offline"
+}

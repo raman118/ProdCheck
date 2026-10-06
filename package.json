@@ -1,0 +1,34 @@
+{
+  "name": "prodcheck",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.24.0",
+  "scripts": {
+    "dev": "pnpm --filter @prodcheck/web dev",
+    "demo": "pnpm dev",
+    "typecheck": "pnpm -r typecheck && tsc -p tsconfig.scripts.json && tsc -p apps/web/tsconfig.e2e.json",
+    "lint": "pnpm -r lint && eslint scripts/fixtures.golden.test.ts scripts/fixtures/load-fixture.ts scripts/scaffold.golden.test.ts scripts/benchmark.ts scripts/benchmark-metrics.ts scripts/benchmark-metrics.test.ts apps/web/e2e apps/web/playwright.config.ts",
+    "architecture": "depcruise --config .dependency-cruiser.cjs packages/shared/src packages/scanner/src apps/web/src",
+    "test:unit": "vitest run --config vitest.unit.config.ts",
+    "test:golden": "vitest run --config vitest.golden.config.ts",
+    "test:e2e": "pnpm --filter @prodcheck/web test:e2e",
+    "benchmark": "pnpm exec tsx scripts/benchmark.ts",
+    "build": "pnpm -r build",
+    "verify": "pnpm typecheck && pnpm lint && pnpm architecture && pnpm test:unit && pnpm test:golden && pnpm build",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@next/eslint-plugin-next": "^15.5.27",
+    "@types/node": "^22.20.5",
+    "dependency-cruiser": "^17.3.7",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^16.5.0",
+    "prettier": "^3.6.2",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.2",
+    "vitest": "^3.2.4"
+  }
+}

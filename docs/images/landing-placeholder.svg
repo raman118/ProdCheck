@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="620" viewBox="0 0 1100 620" role="img" aria-labelledby="title description">
+  <title id="title">ProdCheck landing page screenshot placeholder</title>
+  <desc id="description">A dark interface mock showing the repository URL input and scan button.</desc>
+  <rect width="1100" height="620" rx="24" fill="#0b0d11"/>
+  <path d="M0 90h1100" stroke="#272e3a"/>
+  <rect x="52" y="30" width="32" height="32" rx="9" fill="#9af18b"/>
+  <text x="68" y="52" text-anchor="middle" fill="#0a150b" font-family="Arial,sans-serif" font-size="18" font-weight="700">P</text>
+  <text x="98" y="52" fill="#f5f7fa" font-family="Arial,sans-serif" font-size="20" font-weight="700">ProdCheck</text>
+  <rect x="915" y="27" width="132" height="40" rx="10" fill="#11151c" stroke="#272e3a"/>
+  <text x="981" y="52" text-anchor="middle" fill="#f5f7fa" font-family="Arial,sans-serif" font-size="14">☼ Light</text>
+  <text x="550" y="190" text-anchor="middle" fill="#9af18b" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="2">PRODUCTION READINESS, MADE CLEAR</text>
+  <text x="550" y="260" text-anchor="middle" fill="#f5f7fa" font-family="Arial,sans-serif" font-size="54" font-weight="700">Know what breaks</text>
+  <text x="550" y="320" text-anchor="middle" fill="#f5f7fa" font-family="Arial,sans-serif" font-size="54" font-weight="700">before production does.</text>
+  <text x="550" y="366" text-anchor="middle" fill="#9ba6b5" font-family="Arial,sans-serif" font-size="17">Scan a public GitHub repo for security, data, reliability, and quality risks.</text>
+  <rect x="220" y="410" width="660" height="68" rx="14" fill="#11151c" stroke="#272e3a"/>
+  <text x="244" y="451" fill="#9ba6b5" font-family="Arial,sans-serif" font-size="16">https://github.com/owner/repo</text>
+  <rect x="690" y="420" width="176" height="48" rx="10" fill="#9af18b"/>
+  <text x="778" y="450" text-anchor="middle" fill="#0a150b" font-family="Arial,sans-serif" font-size="15" font-weight="700">Scan repository →</text>
+  <text x="550" y="512" text-anchor="middle" fill="#9ba6b5" font-family="Arial,sans-serif" font-size="13">Public GitHub only · No login · We never run repository code</text>
+  <text x="550" y="585" text-anchor="middle" fill="#586270" font-family="Arial,sans-serif" font-size="13">SCREENSHOT PLACEHOLDER</text>
+</svg>

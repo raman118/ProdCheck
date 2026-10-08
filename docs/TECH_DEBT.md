@@ -1,11 +1,14 @@
 # Technical debt
 
 - M2 auth and rate-limit markers are text heuristics; global middleware, wrappers, or comments can cause false positives or false negatives.
+- SEC-001 recognizes common Stripe webhook signature verification and REL-002 exempts verified raw webhook payloads; other providers and custom signature helpers still need explicit patterns and fixtures.
 - M2's SQL interpolation check is line-based, and sanitizer flow is local to one file. Replace heuristic gaps only when additional syntax support has meaningful fixtures.
 - Security header detection scans repository config only and can warn when a CDN or hosting dashboard supplies headers externally.
 - M3 SQL migration/index checks use bounded regex parsing; composite indexes, complex joins, and dynamic query construction need more fixtures before broader claims.
 - M3 OSV offline fallback contains one known fixture advisory and is not a substitute for a successful online lookup.
 - M3 lockfile adapters support common npm, pnpm, Yarn, and Bun text formats; binary Bun lockfiles are presence-only until a safe parser is added.
+- QUA-004 treats a dependency as reproducibly resolved when its name appears in parsed lockfile data; it does not verify that each workspace manifest constraint matches the locked version.
+- DATA-002 lowers unconditional read policies on conventionally named catalog tables to low severity; custom catalog names and sensitive data stored in catalog-named tables require human review.
 - M4 fix templates cover only recognized CORS syntax, plain-object Next config, clear owner-column RLS, Next app/pages health routes, and exact pins backed by parsed lockfiles. Existing config helpers/custom headers and app-specific auth/validation require human edits; `validated` proves patch mechanics and syntax, not runtime behavior.
 - M5's global setup precompiles the dynamic result route before the mocked Playwright test because Next dev compiles dynamic routes on first request; production build routes are unaffected.
 - M6 Postgres connections are capped at five per server process but still need deployment validation against the chosen Supabase pooler. SQLite is for local use only; production refuses to start persistence without `DATABASE_URL`.

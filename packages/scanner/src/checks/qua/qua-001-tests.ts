@@ -2,12 +2,16 @@ import type { Finding } from "@prodcheck/shared/finding";
 import type { Check } from "../contracts";
 import { finding } from "../helpers";
 
-const TEST_FILE =
-  /(?:^|\/)(?:__tests__\/|[^/]+\.(?:test|spec)\.[cm]?[jt]sx?)$/i;
+const TEST_DIRECTORY = /(?:^|\/)(?:__tests__|tests?|specs?)(?:\/|$)/i;
+const TEST_FILE = /(?:^|\/)[^/]+\.(?:test|spec)\.[cm]?[jt]sx?$/i;
 
 export const checkQua001Tests: Check = (snapshot, context): Finding[] => {
   void context;
-  if ([...snapshot.files.keys()].some((path) => TEST_FILE.test(path)))
+  if (
+    [...snapshot.files.keys()].some(
+      (path) => TEST_DIRECTORY.test(path) || TEST_FILE.test(path),
+    )
+  )
     return [];
   return [
     finding({

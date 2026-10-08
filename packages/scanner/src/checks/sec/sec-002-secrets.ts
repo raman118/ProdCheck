@@ -59,7 +59,7 @@ export const checkSec002Secrets: Check = (snapshot, context): Finding[] => {
         finding({
           id: `SEC-002:${file}:env-file`,
           checkId: "SEC-002",
-          severity: "critical",
+          severity: "high",
           category: "security",
           title: "Environment file is committed",
           explanation:
@@ -72,7 +72,7 @@ export const checkSec002Secrets: Check = (snapshot, context): Finding[] => {
               "Committed environment file detected; values are hidden.",
             ),
           ],
-          confidence: 0.96,
+          confidence: 0.82,
         }),
       );
     }
@@ -96,7 +96,7 @@ export const checkSec002Secrets: Check = (snapshot, context): Finding[] => {
         finding({
           id: `SEC-002:${file}:${lineNumber}:secret`,
           checkId: "SEC-002",
-          severity: knownMatch || isEnvFile ? "critical" : "high",
+          severity: knownMatch ? "critical" : "high",
           category: "security",
           title: "Possible hardcoded secret",
           explanation: `A value assigned to ${keyName} looks like a credential. Move it to server-side environment configuration and rotate it if it is real.`,

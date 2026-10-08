@@ -27,4 +27,20 @@ describe("QUA-004 reproducible dependencies", () => {
       checkQua004PinnedDependencies(withLock, testContext(withLock)),
     ).toEqual([]);
   });
+
+  it("accepts ranged dependencies resolved by the committed lockfile", () => {
+    const snapshot = testSnapshot({
+      "package.json": JSON.stringify({ dependencies: { react: "^19.0.0" } }),
+    });
+    const withLock = {
+      ...snapshot,
+      lockfiles: new Set(["pnpm-lock.yaml"]),
+      dependencies: [
+        { name: "react", version: "19.1.0", lockfile: "pnpm-lock.yaml" },
+      ],
+    };
+    expect(
+      checkQua004PinnedDependencies(withLock, testContext(withLock)),
+    ).toEqual([]);
+  });
 });

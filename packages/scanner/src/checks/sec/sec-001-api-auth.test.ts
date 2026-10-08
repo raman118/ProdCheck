@@ -26,6 +26,18 @@ describe("SEC-001 API authentication", () => {
     expect(checkSec001ApiAuth(snapshot, testContext(snapshot))).toEqual([]);
   });
 
+  it("recognizes Stripe webhook signature verification", () => {
+    const snapshot = testSnapshot({
+      "app/api/webhooks/route.ts": [
+        "export async function POST(req: Request) {",
+        "  const signature = req.headers.get('stripe-signature');",
+        "  const event = stripe.webhooks.constructEvent(await req.text(), signature, secret);",
+        "}",
+      ].join("\n"),
+    });
+    expect(checkSec001ApiAuth(snapshot, testContext(snapshot))).toEqual([]);
+  });
+
   it("allows an intentionally public health route", () => {
     const snapshot = testSnapshot({
       "app/api/health/route.ts":

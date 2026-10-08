@@ -24,18 +24,25 @@ export const checkData002PermissiveRls: Check = (
         /\bservice_role\b/i.test(statement) &&
         !/\b(?:anon|authenticated)\b/i.test(statement);
       if ((!openPolicy && !lacksUserIdentity) || servicePolicy) continue;
+      const tableName = statement.match(/\bon\s+(?:public\.)?([\w-]+)/i)?.[1];
+      const publicCatalog =
+        /\bfor\s+select\b/i.test(statement) &&
+        /^(?:products?|prices?|plans?|tiers?)$/i.test(tableName ?? "");
       const line = content.slice(0, match.index ?? 0).split("\n").length;
       findings.push(
         finding({
           id: `DATA-002:${file}:${line}:${policyName}`,
           checkId: "DATA-002",
-          severity: openPolicy ? "critical" : "high",
+          severity: publicCatalog ? "low" : openPolicy ? "critical" : "high",
           category: "data",
-          title: openPolicy
+          title: publicCatalog
+            ? `Public catalog policy ${policyName} allows every row`
+            : openPolicy
             ? `RLS policy ${policyName} allows every row`
             : `RLS policy ${policyName} has no user ownership check`,
-          explanation:
-            "This policy does not tie access to the signed-in user. Restrict rows with an explicit ownership or role condition before exposing the table.",
+          explanation: publicCatalog
+            ? "This read policy intentionally exposes catalog rows to everyone. Confirm the table contains only information meant to be public."
+            : "This policy does not tie access to the signed-in user. Restrict rows with an explicit ownership or role condition before exposing the table.",
           evidence: [
             sourceEvidence(
               snapshot,
@@ -44,7 +51,7 @@ export const checkData002PermissiveRls: Check = (
               `RLS policy ${policyName} has a permissive or missing identity condition.`,
             ),
           ],
-          confidence: openPolicy ? 0.9 : 0.72,
+          confidence: publicCatalog ? 0.62 : openPolicy ? 0.9 : 0.72,
         }),
       );
     }

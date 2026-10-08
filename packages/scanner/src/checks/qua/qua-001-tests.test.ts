@@ -15,4 +15,9 @@ describe("QUA-001 test coverage presence", () => {
     });
     expect(checkQua001Tests(snapshot, testContext(snapshot))).toEqual([]);
   });
+
+  it("recognizes files under a conventional test directory", () => {
+    const snapshot = testSnapshot({ "test/middleware.basic.js": "assert(true);" });
+    expect(checkQua001Tests(snapshot, testContext(snapshot))).toEqual([]);
+  });
 });

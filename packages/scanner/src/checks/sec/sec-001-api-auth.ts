@@ -19,7 +19,7 @@ const HTTP_METHODS = new Set([
   "PUT",
 ]);
 const AUTH_GUARD =
-  /\b(?:requireAuth|withAuth|authenticate|isAuthenticated|verifyToken|verifyJwt|getUser|getSession|auth\.getUser|authorization)\b/i;
+  /\b(?:requireAuth|withAuth|authenticate|isAuthenticated|verifyToken|verifyJwt|getUser|getSession|auth\.getUser|authorization|stripe\.webhooks\.constructEvent(?:Async)?|verifyWebhook)\b/i;
 
 export const checkSec001ApiAuth: Check = (snapshot, context): Finding[] => {
   void context;

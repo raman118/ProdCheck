@@ -15,6 +15,9 @@ export const checkRel002BodyValidation: Check = (
   const findings: Finding[] = [];
   for (const file of routeFiles(snapshot)) {
     const content = snapshot.files.get(file) ?? "";
+    // Stripe verifies the raw body against its signature; JSON schema parsing
+    // would invalidate that signature and is not the right validation here.
+    if (/stripe\.webhooks\.constructEvent(?:Async)?/.test(content)) continue;
     const bodyLine = content
       .split(/\r?\n/)
       .findIndex((line) => REQUEST_BODY.test(line));

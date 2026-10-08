@@ -62,6 +62,10 @@ export const checkQua004PinnedDependencies: Check = (
         continue;
       for (const [name, version] of Object.entries(group)) {
         if (typeof version !== "string" || isPinned(version)) continue;
+        // The manifest can use a range while the committed lockfile still
+        // gives installs a reproducible exact version.
+        if (snapshot.dependencies.some((dependency) => dependency.name === name))
+          continue;
         const line = content
           .split(/\r?\n/)
           .findIndex((value) => value.includes(`"${name}"`));

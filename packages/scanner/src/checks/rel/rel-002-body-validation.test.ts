@@ -22,4 +22,18 @@ describe("REL-002 request validation", () => {
       [],
     );
   });
+
+  it("accepts a raw Stripe webhook body verified by signature", () => {
+    const snapshot = testSnapshot({
+      "app/api/webhooks/route.ts": [
+        "export async function POST(request: Request) {",
+        "  const body = await request.text();",
+        "  stripe.webhooks.constructEvent(body, signature, secret);",
+        "}",
+      ].join("\n"),
+    });
+    expect(checkRel002BodyValidation(snapshot, testContext(snapshot))).toEqual(
+      [],
+    );
+  });
 });

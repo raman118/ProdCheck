@@ -26,4 +26,15 @@ describe("DATA-002 permissive RLS", () => {
       [],
     );
   });
+
+  it("treats public read-only catalog policies as low severity review items", () => {
+    const snapshot = testSnapshot({
+      "supabase/migrations/001.sql": [
+        "create policy public_products on public.products for select using (true);",
+        "create policy public_prices on public.prices for select using (true);",
+      ].join("\n"),
+    });
+    const findings = checkData002PermissiveRls(snapshot, testContext(snapshot));
+    expect(findings.map(({ severity }) => severity)).toEqual(["low", "low"]);
+  });
 });

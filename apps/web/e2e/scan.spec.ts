@@ -4,6 +4,12 @@ import { loadMissingAuthReport } from "./fixture-report";
 test("scans a mocked fixture repository and opens its verified fix", async ({
   page,
 }) => {
+  const hydrationErrors: string[] = [];
+  page.on("console", (message) => {
+    if (message.type() === "error" && /hydrated|hydration/i.test(message.text()))
+      hydrationErrors.push(message.text());
+  });
+
   const report = await loadMissingAuthReport();
   const healthFinding = report.findings.find(
     (finding) => finding.checkId === "REL-004" && finding.fix?.validated,
@@ -81,4 +87,5 @@ test("scans a mocked fixture repository and opens its verified fix", async ({
   expect(badge.headers()["content-type"]).toContain("image/svg+xml");
   expect(await badge.text()).toContain(`ProdCheck score ${report.score}/100`);
   await freshContext.close();
+  expect(hydrationErrors).toEqual([]);
 });

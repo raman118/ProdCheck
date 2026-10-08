@@ -267,13 +267,15 @@ function Reveal({
   delay?: number;
 }) {
   const reduceMotion = useReducedMotion();
+  const [hydrated, setHydrated] = useState(false);
+  useEffect(() => setHydrated(true), []);
   return (
     <motion.div
       className={className}
-      initial={reduceMotion ? false : { opacity: 1, y: 8 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={false}
+      whileInView={hydrated ? { opacity: 1, y: 0 } : undefined}
       viewport={{ once: true, amount: 0.18 }}
-      transition={{ duration: reduceMotion ? 0 : 0.45, delay }}
+      transition={{ duration: hydrated && reduceMotion ? 0 : 0.45, delay }}
     >
       {children}
     </motion.div>

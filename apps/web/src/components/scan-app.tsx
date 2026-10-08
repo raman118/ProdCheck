@@ -12,6 +12,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, type FormEvent } from "react";
 import { MarketingPage } from "./marketing-page";
+import { BrandMark } from "./brand-mark";
 import { useScan } from "./use-scan";
 import { Button, Card } from "./ui";
 
@@ -121,7 +122,7 @@ function Header() {
   return (
     <header className="topbar container">
       <Link className="brand" href="/" aria-label="ProdCheck home">
-        <span className="brand-mark" aria-hidden="true">P</span>
+        <span className="brand-mark"><BrandMark /></span>
         ProdCheck
       </Link>
       <Button
@@ -358,7 +359,7 @@ export function ReportView({
       <header className="report-stickybar">
         <div className="report-sticky-inner shell">
           <Link className="brand report-brand" href="/" aria-label="ProdCheck home">
-            <span className="brand-mark" aria-hidden="true">P</span>
+            <span className="brand-mark"><BrandMark /></span>
             <span>prodcheck</span>
           </Link>
           <div className="report-identity">
@@ -542,7 +543,7 @@ function Footer() {
       <div className="shell report-footer-main">
         <div>
           <Link className="brand" href="/">
-            <span className="brand-mark" aria-hidden="true">P</span>
+            <span className="brand-mark"><BrandMark /></span>
             <span>prodcheck</span>
           </Link>
           <p>Production readiness, with receipts.</p>

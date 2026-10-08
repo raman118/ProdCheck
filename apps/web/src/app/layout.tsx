@@ -7,6 +7,7 @@ export const metadata = {
   title: "ProdCheck — Production readiness for your repository",
   description:
     "Deterministic production readiness scans for public GitHub repositories.",
+  icons: { icon: "/icon.svg" },
 };
 
 export default function RootLayout({

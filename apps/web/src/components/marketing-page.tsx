@@ -27,6 +27,7 @@ import {
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { animate, useMotionValue, useTransform } from "framer-motion";
 import Link from "next/link";
+import { BrandMark } from "./brand-mark";
 import benchmarkData from "../../../../benchmarks/results.json";
 import demoReportData from "../data/demo-report.json";
 import sampleReportData from "../data/sample-report.json";
@@ -213,7 +214,7 @@ function Brand() {
   return (
     <Link className="brand" href="/" aria-label="ProdCheck home">
       <span className="brand-mark" aria-hidden="true">
-        <ShieldCheck />
+        <BrandMark />
       </span>
       <span>prodcheck</span>
     </Link>
